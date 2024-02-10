@@ -1,0 +1,6 @@
+<h1>{{ title }}</h1>
+<app-home/>
+<!-- <div *ngFor="let item of items">{{ item }}</div> -->
+<app-pie-chart *ngFor="let item of items" [any]="item"></app-pie-chart>
+
+<router-outlet></router-outlet>
