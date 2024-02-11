@@ -1,0 +1,8 @@
+<div class="topnav">
+    <li>
+        <select (change)="onSelectionChange($event)" name="years" id="year">
+        <option *ngFor="let year of years" value={{year}}>{{year}}</option>
+        </select>
+        {{selectedYear}} <!-- TODO: split correctly the sections inside navbar-->
+    </li>
+</div>

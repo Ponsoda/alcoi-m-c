@@ -1,0 +1,21 @@
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    height: 55px;
+}
+
+li {
+    list-style-type: none
+}
+
+/* Style the select element */
+select {
+    margin: 8px;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #555;
+    color: white;
+}
