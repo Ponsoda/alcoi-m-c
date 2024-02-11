@@ -13,6 +13,12 @@ import Chart from 'chart.js/auto';
 
 export class PieChartComponent implements OnInit {
   @Input() any!: number;
+  @Input() type!: string;
+  @Input() selectedYear!: string;
+
+  onDropdownSelectionChange(value: string): void {
+    this.selectedYear = value;
+  }
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -24,38 +30,21 @@ export class PieChartComponent implements OnInit {
   dataDones: number = 0;
   dataHomes: number = 0;
   chartLabels: string[] = [];
-  public type : string = 'associats'
 
   constructor(private http: HttpClient) { 
   }
 
   ngOnInit(): void {
-    // this.dataService.getJsonData().subscribe(data => {
-    //   // Assuming your JSON structure is like { "labels": [...], "data": [...] }
-    //   console.log(data)
-    //   // this.chartLabels = data.labels;
-    //   // this.chartData = data.data;
-    // });
     this.http.get<any>(`https://raw.githubusercontent.com/Ponsoda/alcoi-m-c-dades/main/associacioSantJordi/revista${this.any + 1}/dades${this.any}.json`, { headers: this.headers }).subscribe(data => {
-      // for (let i of Object.keys(data)) {
-      //   console.log(i)
-      //   this.dataDones = data[i]['dones'];
-      //   this.dataHomes = data[i]['homes'];
-      //   console.log(this.dataDones);
-      //   console.log(this.dataHomes);
-      //   this.createChart(this.dataDones, this.dataHomes);
-      // }
-    this.dataDones = data[this.type]['dones'];
-    this.dataHomes = data[this.type]['homes'];
-    this.createChart(this.dataDones, this.dataHomes);
-
-
-  }) 
+      this.dataDones = data[this.type]['dones'];
+      this.dataHomes = data[this.type]['homes'];
+      this.createChart(this.dataDones, this.dataHomes);
+    }) 
   }
 
   createChart(dataDones: number, dataHomes: number){
 
-    this.chart = new Chart(this.any.toString(), {
+    this.chart = new Chart(this.type, {
       type: 'pie', //this denotes tha type of chart
 
       data: {// values on X-Axis
@@ -71,7 +60,7 @@ export class PieChartComponent implements OnInit {
   }],
       },
       options: {
-        aspectRatio:5
+        aspectRatio:2
       }
 
     });

@@ -1,6 +1,10 @@
-<h1>{{ title }}</h1>
-<app-home/>
+<app-navbar/>
 <!-- <div *ngFor="let item of items">{{ item }}</div> -->
-<app-pie-chart *ngFor="let item of items" [any]="item"></app-pie-chart>
 
+<div class="grid-container">
+    <div *ngFor="let type of types" class="grid-item">
+        <app-pie-chart [selectedYear]="selectedYear" [any]="2014" [type]="type"></app-pie-chart>
+        {{selectedYear}} <!--TODO: visualize selected year-->
+    </div>
+</div>
 <router-outlet></router-outlet>
