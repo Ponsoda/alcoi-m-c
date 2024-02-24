@@ -5,23 +5,23 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { Navbar } from './navbar/navbar.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { HistoricChartComponent } from './historic-chart/historic-chart.component';
+import { FilaesChartComponent } from './filaes-chart/filaes-chart.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, PieChartComponent, Navbar, HttpClientModule],
+  imports: [CommonModule, RouterOutlet, PieChartComponent, HistoricChartComponent, Navbar, HttpClientModule, FilaesChartComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = "Moros i Cristians d'Alcoi";
-  any: number = 0;
-  items: number[] = [2014, 2015, 2016];
-  types: string[] = ['associats', 'primersTrons', 'majorals', 'cuadroHonor', 'personatgesFesters']
+  types: string[] = ['associats', 'junta', 'primersTrons', 'majorals', 'cuadroHonor', 'personatgesFesters']
 
-  selectedYear: string = '';
+  selectedYear: number = 2022;
 
-  onDropdownSelectionChange(value: string): void {
-    this.selectedYear = value;
+  onDropdownSelectionChange(selectedYear: number): void {
+    this.selectedYear = selectedYear;
   }
 }
