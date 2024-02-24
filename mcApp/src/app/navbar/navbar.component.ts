@@ -9,14 +9,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.scss'
 })
 export class Navbar {
-  @Output() selectionChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() selectionChange: EventEmitter<number> = new EventEmitter<number>();
 
-  years: number[] = [2014, 2015, 2016];
-  selectedYear: number = this.years[0];
+  years: number[] = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]; // TODO: add years from api call
+  selectedYear: number;
 
   onSelectionChange(event: any): void {
-    // const selectedValue: string = event.target.value;
-    // this.selectionChange.emit(selectedValue);
     this.selectedYear = event.target.value;
+    this.selectionChange.emit(this.selectedYear);
   }
 }
