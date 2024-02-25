@@ -1,8 +1,17 @@
 <div class="topnav">
     <li>
+        <button (click)="showOffcanvas()">Info</button>
+        <app-offcanvas [showOffcanvas]="offcanvasVisible" (close)="closeOffcanvas()">
+            <!-- Your content goes here -->
+            Dades sobre la participació de la dona a les festes de Moros i Cristians d'Alcoi extretes a partir de la informació accessible de l'Associació de Sant Jordi.
+
+            El apartat "Dades per filà" fa menció a les dades de la directiva.
+            
+            Fe d'errates: la majoria de dades s'han recollit de forma manual, pel que pot haver-hi alguna errata.
+            Pots tobar mes informació sobre les dades recollides al github.
+          </app-offcanvas>
         <select (change)="onSelectionChange($event)" name="years" id="year">
         <option *ngFor="let year of years" value={{year}}>{{year}}</option>
         </select>
-        {{selectedYear}} <!-- TODO: split correctly the sections inside navbar-->
     </li>
 </div>

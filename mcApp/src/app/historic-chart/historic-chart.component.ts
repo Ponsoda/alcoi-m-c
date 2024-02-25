@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Chart from 'chart.js/auto';
+import { donesColor, homesColor, graphsRatio } from '../general_config';
+
 
 @Component({
   selector: 'app-historic-chart',
@@ -22,9 +24,12 @@ export class HistoricChartComponent implements OnInit {
   dataHistoricDones: number[] = [];
   dataHistoricHomes: number[] = [];
   years: string[];
+  chartCtx: string = 'historicChart';
 
   constructor(private http: HttpClient) { 
   }
+
+  @Output() outputVariableChange: EventEmitter<number[]> = new EventEmitter<number[]>();
 
   ngOnInit(): void {
     this.loadHistoricData();
@@ -36,6 +41,8 @@ export class HistoricChartComponent implements OnInit {
       (data) => {
         
         this.years = Object.keys(data['associats'])
+
+        this.outputVariableChange.emit(this.years.map((value) => Number(value)).sort((a, b) => b - a));
 
         for (let year of this.years) {
           this.dataHistoricDones.push(data['associats'][year]['dones'])
@@ -52,7 +59,7 @@ export class HistoricChartComponent implements OnInit {
 
   createHistoricChart(dataDones: number[], dataHomes: number[], years: string[]){
 
-    this.chartHistoric = new Chart('chartHistoric', {
+    this.chartHistoric = new Chart(this.chartCtx, {
       type: 'line',
       data: {
         labels: years,
@@ -61,7 +68,7 @@ export class HistoricChartComponent implements OnInit {
           data: dataDones,
           fill: true,
           backgroundColor: [
-            '#ffc0cb8f',
+            donesColor,
           ]
         },
         {
@@ -69,12 +76,12 @@ export class HistoricChartComponent implements OnInit {
           label: 'Homes',
           data: dataHomes,
           backgroundColor: [
-            '#0000ff87',
+            homesColor,
           ]
         }],
         },
         options: {
-          aspectRatio:2
+          aspectRatio:graphsRatio
         }
     });
   }
