@@ -1,13 +1,16 @@
-<app-navbar (selectionChange)="onDropdownSelectionChange($event)"/>
+<app-navbar [years]="years" (selectionChange)="onDropdownSelectionChange($event)"/>
 <div class="grid-container">
-    <div *ngFor="let type of types" class="grid-item">
-        <app-pie-chart [selectedYear]="selectedYear" [type]="type"></app-pie-chart>
+    <div class="grid-item">
+        <app-associacio-chart [selectedYear]="selectedYear"></app-associacio-chart>
     </div>
     <div class="grid-item">
-        <app-historic-chart></app-historic-chart>
+        <app-historic-chart (outputVariableChange)="handleOutputChange($event)"/>
     </div>
     <div class="grid-item">
-        <app-filaes-chart></app-filaes-chart>
+        <app-filaes-cristianes-chart></app-filaes-cristianes-chart>
+    </div>
+    <div class="grid-item">
+        <app-filaes-mores-chart></app-filaes-mores-chart>
     </div>
 </div>
 <router-outlet></router-outlet>
