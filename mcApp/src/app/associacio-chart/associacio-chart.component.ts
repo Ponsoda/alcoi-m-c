@@ -36,8 +36,7 @@ export class AssociacioChartComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedYear']) {
-      // this.loadData();
-      // this.createChart(1, 1);
+      this.loadData();
     }
   }
 
