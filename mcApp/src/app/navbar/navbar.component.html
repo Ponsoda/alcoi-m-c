@@ -2,13 +2,10 @@
     <li>
         <button (click)="showOffcanvas()">Info</button>
         <app-offcanvas [showOffcanvas]="offcanvasVisible" (close)="closeOffcanvas()">
-            <!-- Your content goes here -->
-            Dades sobre la participació de la dona a les festes de Moros i Cristians d'Alcoi extretes a partir de la informació accessible de l'Associació de Sant Jordi.
-
-            El apartat "Dades per filà" fa menció a les dades de la directiva.
-            
-            Fe d'errates: la majoria de dades s'han recollit de forma manual, pel que pot haver-hi alguna errata.
-            Pots tobar mes informació sobre les dades recollides al github.
+            <p>Dades sobre la participació de la dona a les festes de Moros i Cristians d'Alcoi extretes a partir de la informació accessible de <a href="https://www.asjordi.org/" target="_blank">l'Associació de Sant Jordi</a>.</p>
+            <p>El apartat "Dades per filà" fa menció a les dades de la directiva.</p>
+            <p><b>Fe d'errates:</b> la majoria de dades s'han recollit de forma manual, pel que pot haver-hi alguna errata.</p>
+            <p>Pots tobar mes informació sobre les dades recollides al <a href="https://github.com/Ponsoda/alcoi-m-c-dades/" target="_blank">github</a>.</p>
           </app-offcanvas>
         <select (change)="onSelectionChange($event)" name="years" id="year">
         <option *ngFor="let year of years" value={{year}}>{{year}}</option>
