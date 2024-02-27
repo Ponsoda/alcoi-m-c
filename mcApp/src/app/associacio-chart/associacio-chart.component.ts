@@ -18,11 +18,6 @@ export class AssociacioChartComponent implements OnInit {
     this.selectedYear = value;
   }
 
-  headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  });
-
   public chart: any;
   public chartHistoric: any;
   public chartName: string = "Dades associació";
@@ -31,11 +26,12 @@ export class AssociacioChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadData();
+    // this.loadData();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedYear']) {
+      this.destroyChart();
       this.loadData();
     }
   }
@@ -51,7 +47,7 @@ export class AssociacioChartComponent implements OnInit {
   }
 
   loadData(): void {
-    this.http.get<any>(`https://raw.githubusercontent.com/Ponsoda/alcoi-m-c-dades/main/associacioSantJordi/revista${Number(this.selectedYear) + 1}/dades${this.selectedYear}.json`, { headers: this.headers }).subscribe(
+    this.http.get<any>(`https://raw.githubusercontent.com/Ponsoda/alcoi-m-c-dades/main/associacioSantJordi/revista${Number(this.selectedYear) + 1}/dades${this.selectedYear}.json`).subscribe(
       (data) => {
 
         let associacioLabels: string[] = [];
@@ -79,7 +75,6 @@ export class AssociacioChartComponent implements OnInit {
   }
 
   createChart(dataDones: number[], dataHomes: number[], associacio: string[]){
-
     this.chart = new Chart('chartAssociacio', {
       type: 'bar',
       data: {
