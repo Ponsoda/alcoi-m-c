@@ -30,7 +30,7 @@ export class AssociacioChartComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedYear']) {
+    if (changes['selectedYear'].currentValue !== undefined) {
       this.destroyChart();
       this.loadData();
     }
