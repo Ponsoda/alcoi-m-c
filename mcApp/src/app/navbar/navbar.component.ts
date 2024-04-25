@@ -20,6 +20,7 @@ export class Navbar {
     if (changes['years'] && this.years && this.years.length > 0 && this.selectedYear === undefined) {
       // If 'years' input is changed and has values, set the initial value for 'selectedYear'
       this.selectedYear = this.years[0];
+      this.selectionChange.emit(this.selectedYear);
     }
   }
 

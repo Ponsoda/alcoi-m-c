@@ -20,7 +20,7 @@ export class AppComponent {
   title = "Moros i Cristians d'Alcoi";
   types: string[] = ['associats', 'junta', 'primersTrons', 'majorals', 'cuadroHonor', 'personatgesFesters']
 
-  selectedYear: number = 2014;
+  selectedYear: number;
   years: number[];
 
   onDropdownSelectionChange(selectedYear: number): void {
